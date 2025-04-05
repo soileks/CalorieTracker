@@ -69,7 +69,7 @@ git clone https://github.com/soileks/CalorieTracker.git "my-project"
 
 Удаление пользователя: DELETE /api/users/id
 
-Обновление пользователя: PUT GET /api/users/id
+Обновление пользователя: PUT /api/users/id
 
 ## 2. Блюда.
 
@@ -85,7 +85,7 @@ git clone https://github.com/soileks/CalorieTracker.git "my-project"
 
 Получение конкретного приема пищи: GET /api/meals/id
 
-Получение приемов пищи конкретного пользователя(с возможностью задать дату приема пищи): GET /api/meals/user/userId
+Получение приемов пищи конкретного пользователя (с возможностью задать дату приема пищи): GET /api/meals/user/userId
 
 Удаление приема пищи: DELETE /api/meals/id
 
@@ -99,5 +99,5 @@ git clone https://github.com/soileks/CalorieTracker.git "my-project"
   
  - проверка, уложился ли пользователь в свою дневную норму калорий
   
- - отклонение от нормы(количество калорий)
+ - отклонение от нормы (количество калорий)
 
