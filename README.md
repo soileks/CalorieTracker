@@ -49,8 +49,6 @@ git clone https://github.com/soileks/CalorieTracker.git "my-project"
 
 ### Запуск приложения:
 
-*База данных должна быть открыта
-
 Если вы используете среду разработки "intellij idea", то можете напрямую запустить CalorieTrackerApplication.java
 
 Или же можно запустить через командную строку:
