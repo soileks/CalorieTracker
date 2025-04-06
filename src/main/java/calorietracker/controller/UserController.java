@@ -1,5 +1,6 @@
 package calorietracker.controller;
 
+import calorietracker.dto.UserCreateRequest;
 import calorietracker.dto.UserDTO;
 import calorietracker.service.UserService;
 import jakarta.validation.Valid;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserCreateRequest userDTO) {
         UserDTO createdUser = userService.createUser(userDTO);
         return ResponseEntity.created(URI.create("/api/users/" + createdUser.getId()))
                 .body(createdUser);
@@ -42,8 +43,8 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(
             @PathVariable Long id,
-            @Valid @RequestBody UserDTO userDTO) {
-        UserDTO updatedUser = userService.updateUser(id, userDTO);
+            @Valid @RequestBody UserCreateRequest user) {
+        UserDTO updatedUser = userService.updateUser(id, user);
         return ResponseEntity.ok(updatedUser);
     }
 }

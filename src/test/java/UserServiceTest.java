@@ -1,3 +1,4 @@
+import calorietracker.dto.UserCreateRequest;
 import calorietracker.dto.UserDTO;
 import calorietracker.exception.ResourceNotFoundException;
 import calorietracker.model.Goal;
@@ -55,9 +56,9 @@ class UserServiceTest {
     @Test
     void createUserWithValidDataReturnsUserDTO() {
         // Arrange
-        UserDTO inputDTO = new UserDTO(
-                null, "New User", "new@example.com",
-                25, 65.0, 165.0, Goal.WEIGHT_LOSS, 0
+        UserCreateRequest input = new UserCreateRequest(
+                 "New User", "new@example.com",
+                25, 65.0, 165.0, Goal.WEIGHT_LOSS
         );
 
         User newUser = User.builder()
@@ -85,12 +86,12 @@ class UserServiceTest {
                 25, 65.0, 165.0, Goal.WEIGHT_LOSS, 1800
         );
 
-        when(modelMapper.map(inputDTO, User.class)).thenReturn(newUser);
+        when(modelMapper.map(input, User.class)).thenReturn(newUser);
         when(userRepository.save(newUser)).thenReturn(savedUser);
         when(modelMapper.map(savedUser, UserDTO.class)).thenReturn(expectedDTO);
 
         // Act
-        UserDTO result = userService.createUser(inputDTO);
+        UserDTO result = userService.createUser(input);
 
         // Assert
         assertNotNull(result);
@@ -161,9 +162,9 @@ class UserServiceTest {
     @Test
     void updateUserWithValidDataReturnsUpdatedUserDTO() {
         // Arrange
-        UserDTO updateDTO = new UserDTO(
-                1L, "Updated Name", "updated@example.com",
-                31, 71.0, 171.0, Goal.WEIGHT_GAIN, 2200
+        UserCreateRequest updateDTO = new UserCreateRequest(
+                "Updated Name", "updated@example.com",
+                31, 71.0, 171.0, Goal.WEIGHT_GAIN
         );
 
         User updatedUser = User.builder()
@@ -199,9 +200,9 @@ class UserServiceTest {
     @Test
     void updateUserWhenUserNotExistsThrowsException() {
         // Arrange
-        UserDTO updateDTO = new UserDTO(
-                999L, "Updated", "updated@example.com",
-                31, 71.0, 171.0, Goal.WEIGHT_GAIN, 2200
+        UserCreateRequest updateDTO = new UserCreateRequest(
+                 "Updated", "updated@example.com",
+                31, 71.0, 171.0, Goal.WEIGHT_GAIN
         );
 
         when(userRepository.findById(999L)).thenReturn(Optional.empty());

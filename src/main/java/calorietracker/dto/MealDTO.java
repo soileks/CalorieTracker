@@ -15,11 +15,8 @@ import java.util.List;
 public class MealDTO {
     @NotNull(message = "id must not be null")
     private Long id;
-    @NotNull(message =  "user must not be null")
     private UserDTO user;
-    @NotNull(message = "dishes must not be null")
     private List<DishDTO> dishes;
-    @NotNull(message = "mealTime must not be null")
     private LocalDateTime mealTime;
     private LocalDate mealDate; // Для удобства отчетов
     private double totalCalories;

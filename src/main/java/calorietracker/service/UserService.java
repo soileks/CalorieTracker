@@ -1,5 +1,6 @@
 package calorietracker.service;
 
+import calorietracker.dto.UserCreateRequest;
 import calorietracker.dto.UserDTO;
 import calorietracker.exception.ResourceNotFoundException;
 import calorietracker.model.User;
@@ -18,8 +19,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public UserDTO createUser(@Valid UserDTO userDTO) {
-        User user = modelMapper.map(userDTO, User.class);
+    public UserDTO createUser(@Valid UserCreateRequest request) {
+        User user = modelMapper.map(request, User.class);
         User savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserDTO.class);
     }
@@ -36,17 +37,17 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDTO updateUser(Long id, @Valid UserDTO userDTO) {
+    public UserDTO updateUser(Long id, @Valid UserCreateRequest user) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
 
         // Обновляем только изменяемые поля
-        existingUser.setName(userDTO.getName());
-        existingUser.setEmail(userDTO.getEmail());
-        existingUser.setAge(userDTO.getAge());
-        existingUser.setWeight(userDTO.getWeight());
-        existingUser.setHeight(userDTO.getHeight());
-        existingUser.setGoal(userDTO.getGoal());
+        existingUser.setName(user.getName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setAge(user.getAge());
+        existingUser.setWeight(user.getWeight());
+        existingUser.setHeight(user.getHeight());
+        existingUser.setGoal(user.getGoal());
 
         User updatedUser = userRepository.save(existingUser);
         return modelMapper.map(updatedUser, UserDTO.class);

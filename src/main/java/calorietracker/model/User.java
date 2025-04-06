@@ -18,23 +18,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email should be valid")
     private String email;
 
-    @Min(value = 1, message = "Age must be at least 1")
-    @Max(value = 120, message = "Age must be less than 120")
     private int age;
 
-    @Min(value = 30, message = "Weight must be at least 30 kg")
-    @Max(value = 300, message = "Weight must be less than 300 kg")
     private double weight; // кг
 
-    @Min(value = 100, message = "Height must be at least 100 cm")
-    @Max(value = 250, message = "Height must be less than 250 cm")
     private double height; // см
 
     @Enumerated(EnumType.STRING)
