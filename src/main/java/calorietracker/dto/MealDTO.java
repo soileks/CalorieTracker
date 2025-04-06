@@ -13,13 +13,13 @@ import java.util.List;
 
 @Data
 public class MealDTO {
-    @NotNull
+    @NotNull(message = "id must not be null")
     private Long id;
-    @NotNull
+    @NotNull(message =  "user must not be null")
     private UserDTO user;
-
+    @NotNull(message = "dishes must not be null")
     private List<DishDTO> dishes;
-
+    @NotNull(message = "mealTime must not be null")
     private LocalDateTime mealTime;
     private LocalDate mealDate; // Для удобства отчетов
     private double totalCalories;
@@ -27,10 +27,10 @@ public class MealDTO {
     public static MealDTO fromEntity(Meal meal) {
         MealDTO dto = new MealDTO();
         dto.setId(meal.getId());
-        dto.setUser(UserDTO.fromEntity(meal.getUser()));  // Конвертируем User
+        dto.setUser(UserDTO.fromEntity(meal.getUser()));
         dto.setDishes(meal.getDishes().stream()
                 .map(DishDTO::fromEntity)
-                .toList());                               // Конвертируем Dishes
+                .toList());
         dto.setMealTime(meal.getMealTime());
         dto.setMealDate(meal.getMealDate());
         dto.setTotalCalories(calculateTotalCalories(meal.getDishes()));

@@ -13,19 +13,19 @@ public class DishDTO {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "name must not be null")
     private String name;
 
-    @Positive
+    @Positive(message = "caloriesPerServing must be > 0")
     private double caloriesPerServing;
 
-    @PositiveOrZero
+    @PositiveOrZero(message = "protein must be >= 0")
     private double protein;
 
-    @PositiveOrZero
+    @PositiveOrZero(message = "fat must be >= 0")
     private double fat;
 
-    @PositiveOrZero
+    @PositiveOrZero(message = "carbs must be >= 0")
     private double carbs;
 
     public static DishDTO fromEntity(Dish dish) {

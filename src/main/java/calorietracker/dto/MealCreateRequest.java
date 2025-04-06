@@ -1,11 +1,9 @@
 package calorietracker.dto;
 
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -15,12 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MealCreateRequest {
-    @NotNull
+    @NotNull(message = "userId must not be null")
     private Long userId;
 
-    @NotNull
+    @NotNull(message = "mealTime must not be null")
     private LocalDateTime mealTime;
 
-    @NotEmpty
+    @NotEmpty(message = "dishIds must not be null")
     private List<Long> dishIds;
 }

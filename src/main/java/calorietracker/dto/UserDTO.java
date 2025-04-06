@@ -13,25 +13,30 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
+    @NotNull(message = "id must not be null")
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "name must not be null")
     private String name;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = "email must not be null")
+    @Email(message = "input correct email please")
     private String email;
 
-    @Min(1) @Max(120)
+    @Min(value = 1, message = "age must be greater than or equal to 1")
+    @Max(value = 120, message = "age must be less than or equal to 120")
     private int age;
 
-    @Min(30) @Max(300)
+    @Min(value = 30, message = "weight must be greater than or equal to 30")
+    @Max(value = 300, message = "weight must be less than or equal to 300")
     private double weight;
 
-    @Min(100) @Max(250)
+    @Min(value = 100, message = "height must be greater than or equal to 100")
+    @Max(value = 250, message = "height must be less than or equal to 250")
     private double height;
-
+    @NotNull(message = "goal must not be null")
     private Goal goal;
+
     private double dailyCalorieNorm;
 
     public static UserDTO fromEntity(User user) {

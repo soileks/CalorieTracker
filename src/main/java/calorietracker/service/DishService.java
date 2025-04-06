@@ -6,6 +6,7 @@ import calorietracker.dto.DishDTO;
 import calorietracker.exception.ResourceNotFoundException;
 import calorietracker.model.Dish;
 import calorietracker.repository.DishRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class DishService {
     private final DishRepository dishRepository;
 
-    public DishDTO createDish(DishCreateRequest request) {
+    public DishDTO createDish(@Valid DishCreateRequest request) {
         Dish dish = new Dish();
         dish.setName(request.getName());
         dish.setCaloriesPerServing(request.getCaloriesPerServing());

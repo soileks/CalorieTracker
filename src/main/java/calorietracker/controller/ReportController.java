@@ -19,7 +19,7 @@ public class ReportController {
             @PathVariable Long userId,
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-
+        // можно получить отчет питания за любой зарегистрированный день
         if (date == null) {
             date = LocalDate.now();
         }

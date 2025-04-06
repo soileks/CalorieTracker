@@ -4,6 +4,7 @@ import calorietracker.dto.UserDTO;
 import calorietracker.exception.ResourceNotFoundException;
 import calorietracker.model.User;
 import calorietracker.repository.UserRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public UserDTO createUser(UserDTO userDTO) {
+    public UserDTO createUser(@Valid UserDTO userDTO) {
         User user = modelMapper.map(userDTO, User.class);
         User savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserDTO.class);
@@ -35,7 +36,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDTO updateUser(Long id, UserDTO userDTO) {
+    public UserDTO updateUser(Long id, @Valid UserDTO userDTO) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
 

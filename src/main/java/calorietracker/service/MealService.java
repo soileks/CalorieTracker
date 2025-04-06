@@ -9,6 +9,7 @@ import calorietracker.model.User;
 import calorietracker.repository.DishRepository;
 import calorietracker.repository.MealRepository;
 import calorietracker.repository.UserRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class MealService {
     private final DishRepository dishRepository;
 
 
-    public MealDTO createMeal(MealCreateRequest request) {
+    public MealDTO createMeal(@Valid MealCreateRequest request) {
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
