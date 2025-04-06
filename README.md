@@ -48,6 +48,8 @@ git clone https://github.com/soileks/CalorieTracker.git "my-project"
 
 ### Запуск приложения:
 
+*База данных должна быть открыта
+
 Если вы используете среду разработки "intellij idea", то можете напрямую запустить CalorieTrackerApplication.java
 
 Или же можно запустить через командную строку:
@@ -101,3 +103,4 @@ git clone https://github.com/soileks/CalorieTracker.git "my-project"
   
  - отклонение от нормы (количество калорий)
 
+*Вся функциональность проверена с помощью Postman. Также предоставлен небольшой файл для базовой проверки функциональности(New Collection.postman_collection.json). Вы можете самостоятельно открыть предоставленную коллекцию в Postman и запустить Run collection для проверки.
