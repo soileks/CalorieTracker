@@ -35,6 +35,7 @@ Postman (для тестирования API)
 
 
 git clone https://github.com/soileks/CalorieTracker.git "my-project"
+
 "my-project" - ваша папка для проекта
 
 
